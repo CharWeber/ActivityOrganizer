@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+@model Gym.Models.Player
+
+<h2>Player Registration</h2>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Name)
+  @Html.textBoxFor(model => model.Name)
+
+  <input type="submit" value="register this player"/>
+}
+<p>@Html.ActionLink("back", "Index")</p>

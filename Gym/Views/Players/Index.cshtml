@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Gym.Models
+
+<h1>List of Active Players</h1>
+
+@if (ModelExpressionProvider.Count == 0)
+{
+  <h3>No players have been registered at this time</h3>
+}
+
+@foreach(Player player in Model)
+{
+  <p>@Html.ActionLink($"{player.Name}", "Details", new {id = player.PlayerId})</p>
+}
+
+@Html.ActionLink("Register new Player", "Create", "Players")

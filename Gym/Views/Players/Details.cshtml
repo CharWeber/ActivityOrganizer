@@ -1,0 +1,85 @@
+@{
+  Layout = "_Layout";
+}
+@model Gym.Models.Player;
+
+<h2> Player Details</h2>
+
+@if (Model.ActivityJoinEntities.Count == 0)
+{
+  <p>This player has no upcoming Activities</p>
+}
+else
+{
+  <ul>
+  @foreach (var join in Model.ActivityJoinEntities)
+    {
+      if (!join.Completed)
+      {
+        <li>
+          @join.Activity.Name
+          <div class="form-div">
+            @using (Html.BeginForm("DeleteActivity", "Students"))
+            {
+              @Html.Hidden("joinId", @join.ActivityPlayerId)
+              <input type="submit" value="Drop Activity from Student" />
+            }
+          </div>
+          <div class="form-div">
+            @using (Html.BeginForm("CompleteActivity", "Students"))
+            {
+              @Html.Hidden("joinId", @join.ActivityPlayerId)
+              <input type="submit" value="Mark Activity as Completed" />
+            }
+          </div>
+        </li>
+      }
+    }
+  </ul>
+  <h3>@player.Name has completed these Activities:</h3>
+  <ul>
+  @foreach (var join in Model.ActivityJoinEntities)
+    {
+      if (join.Complete)
+      {
+        <li>
+          @join.Activity.Name
+          <div class="form-div">
+            @using (Html.BeginForm("DeleteActivity", "Students"))
+            {
+              @Html.Hidden("joinId", @join.ActivityPlayerId)
+              <input type="submit" value="Drop Activity from Student" />
+            }
+          </div>
+          <div class="form-div">
+            @using (Html.BeginForm("CompleteActivity", "Students"))
+            {
+              @Html.Hidden("joinId", @join.ActivityPlayerId)
+              <input type="submit" value="Mark Activity as Completed" />
+            }
+          </div>
+        </li>
+      }
+    }
+  </ul>
+}
+
+@if(ViewBag.NoActivities)
+{
+  <p>there are no activities currently available</p>
+}
+else
+{
+  @using (Html.BeginForm("AddActivity", "Players"))
+  {
+    @Html.HiddenFor(model => model.PLayerId)
+
+    @Html.Label("Select Activity")
+    @Html.DropDownList("ActivityId")
+
+    <input type="submit" value="Sign Up!"/>
+  }
+}
+
+<p>@Html.ActionLink("Edit this player", "Edit", new { id = Model.PlayerId })</p>
+<p>@Html.ActionLink("Delete this player", "Delete", new { id = Model.PlayerId })</p>
