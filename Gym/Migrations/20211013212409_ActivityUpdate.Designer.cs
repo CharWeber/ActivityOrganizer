@@ -2,14 +2,16 @@
 using Gym.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Gym.Migrations
 {
     [DbContext(typeof(GymContext))]
-    partial class GymContextModelSnapshot : ModelSnapshot
+    [Migration("20211013212409_ActivityUpdate")]
+    partial class ActivityUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,9 +23,6 @@ namespace Gym.Migrations
                     b.Property<int>("ActivityId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    b.Property<bool>("Completed")
-                        .HasColumnType("tinyint(1)");
 
                     b.Property<int>("MaxPlayers")
                         .HasColumnType("int");
@@ -47,6 +46,9 @@ namespace Gym.Migrations
 
                     b.Property<int>("ActivityId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Completed")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<int>("PlayerId")
                         .HasColumnType("int");

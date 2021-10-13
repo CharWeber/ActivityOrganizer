@@ -1,0 +1,68 @@
+@{
+  Layout = "_Layout";
+}
+@model Gym.Models.Activity;
+
+<h2> Activity Details</h2>
+
+@if (Model.PlayerJoinEntities.Count == 0)
+{
+  <p>No one has sign up for theis activity yet!</p>
+}
+else
+{
+  <h3>These Players have registered for your</h3>
+  <ul>
+    @foreach (var join in Model.PlayerJoinEntities)
+    {
+      <li>
+        @join.Player.Name
+          <div class="form-div">
+            @using (Html.BeginForm("RemovePlayer", "Activities"))
+            {
+              @Html.Hidden("joinId", @join.ActivityPlayerId)
+              <input type="submit" value="Drop Student" />
+            }
+          </div>
+      </li>
+    }
+  </ul>
+}
+@if (Model.PlayerJoinEntities.Count > Model.MaxPlayers)
+{
+  <h2>Warning: The amount of players registered exceeds the max Player Limit.</h2>
+  <p>Please Consult facility management to reconcile Player limitations</p>
+}
+else
+{
+  <p>Sign up player!</p>
+  @using (Html.BeginForm("AddPlayer", "Activities"))
+  {
+    @Html.HiddenFor(model => model.ActivityId)
+
+    @Html.Label("Add Player")
+    @Html.DropDownList("PlayerId")
+
+    <input type="submit" value="Sign Up">
+  }
+}
+
+
+@if (!Model.Completed)
+{
+  <h4>Activity Over?</h4>
+<div class="form-div">
+  @using (Html.BeginForm("CompleteActivity", "Activities"))
+  {
+    @Html.Hidden("ActivityId", @Model.ActivityId)
+    <input type="submit" value="Mark Completed" />
+  }
+</div>
+}
+else
+{
+<p>this activity has been completed!</p>
+}
+
+<p>@Html.ActionLink("Edit this Activity", "Edit", new { id = Model.ActivityId })</p>
+<p>@Html.ActionLink("Delete this Activity", "Delete", new { id = Model.ActivityId })</p>

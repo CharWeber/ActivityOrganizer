@@ -1,0 +1,13 @@
+{
+  Layout = "_Layout";
+}
+@model Gym.Models.Activity
+
+<h2>Delete @Model.Name?</h2>
+
+@using (Html.BeginForm())
+{
+  <input type="submit" value="Confirm"/>
+}
+
+<p>@Html.ActionLink("Back to Activities", "Index")</p>

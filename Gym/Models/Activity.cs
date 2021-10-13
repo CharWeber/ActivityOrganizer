@@ -7,13 +7,15 @@ namespace Gym.Models
   {
     public Activity()
     {
-      this.PlayerJoinEntity = new HashSet <ActivityPlayer>();
+      this.PlayerJoinEntities = new HashSet <ActivityPlayer>();
+      this.Completed = false;
     }
 
     public int ActivityId {get;set;}
     public string Name {get;set;}
     public int MaxPlayers {get;set;}
     public string Type {get;set;}
-    public virtual ICollection <ActivityPlayer> PlayerJoinEntity {get;set;}
+    public bool Completed {get; set;}
+    public virtual ICollection <ActivityPlayer> PlayerJoinEntities {get;set;}
   }
 }

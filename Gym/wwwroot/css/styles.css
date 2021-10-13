@@ -1,0 +1,37 @@
+.navbar{
+  position: fixed;
+  top:10vh;
+  left:0px;
+  z-index:1;
+	width:100px;
+  height:40vh;
+	color:rgb(0, 0, 0);
+	background: hsla(94, 86%, 37%, 0.827);
+	padding:8px;
+  padding-top:3em;
+  overflow-X:hidden;
+}
+body{
+  background: url("../img/MainBg.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.card{
+  background-color: hsla(94, 86%, 37%, 0.827);
+  min-width:50%;
+  max-width:85%;
+  margin:5%;
+  padding:5%;
+  border-style: dashed;
+  border-color:whitesmoke;
+  border-radius: 25px;
+  }
+  a{
+    color:black;
+    text-decoration: underline;
+  }
+  .form-div{
+    display: inline-block;
+  }

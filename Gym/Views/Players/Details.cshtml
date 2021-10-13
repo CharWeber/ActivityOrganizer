@@ -14,45 +14,38 @@ else
   <ul>
   @foreach (var join in Model.ActivityJoinEntities)
     {
-      if (!join.Completed)
+      if (!join.Activity.Completed)
       {
         <li>
           @join.Activity.Name
           <div class="form-div">
-            @using (Html.BeginForm("DeleteActivity", "Students"))
+            @using (Html.BeginForm("RemoveActivity", "Players"))
             {
               @Html.Hidden("joinId", @join.ActivityPlayerId)
-              <input type="submit" value="Drop Activity from Student" />
-            }
-          </div>
-          <div class="form-div">
-            @using (Html.BeginForm("CompleteActivity", "Students"))
-            {
-              @Html.Hidden("joinId", @join.ActivityPlayerId)
-              <input type="submit" value="Mark Activity as Completed" />
+              <input type="submit" value="Drop Activity" />
             }
           </div>
         </li>
       }
     }
   </ul>
-  <h3>@player.Name has completed these Activities:</h3>
+  <h3>@Model.Name has completed these Activities:</h3>
   <ul>
   @foreach (var join in Model.ActivityJoinEntities)
     {
-      if (join.Complete)
+      if (join.Activity.Completed)
       {
         <li>
           @join.Activity.Name
           <div class="form-div">
-            @using (Html.BeginForm("DeleteActivity", "Students"))
+            @using (Html.BeginForm("RemoveActivity", "Players"))
             {
               @Html.Hidden("joinId", @join.ActivityPlayerId)
               <input type="submit" value="Drop Activity from Student" />
             }
           </div>
           <div class="form-div">
-            @using (Html.BeginForm("CompleteActivity", "Students"))
+            @using (Html.BeginForm("CompleteActivity", "Players"))
             {
               @Html.Hidden("joinId", @join.ActivityPlayerId)
               <input type="submit" value="Mark Activity as Completed" />
@@ -72,7 +65,7 @@ else
 {
   @using (Html.BeginForm("AddActivity", "Players"))
   {
-    @Html.HiddenFor(model => model.PLayerId)
+    @Html.HiddenFor(model => model.PlayerId)
 
     @Html.Label("Select Activity")
     @Html.DropDownList("ActivityId")

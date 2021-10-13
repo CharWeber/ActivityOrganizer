@@ -1,0 +1,25 @@
+@{
+  Layout = "_Layout";
+}
+@model Gym.Models.Activity
+
+<h2>Edit @Model.Name</h2>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.ActivityId)
+
+  @Html.LabelFor(model => model.Name)
+  @Html.EditorFor(model => model.Name)
+
+  @Html.LabelFor(model => model.MaxPlayers)
+  @Html.EditorFor(model => model.MaxPlayers)
+  
+  @Html.LabelFor(model => model.Type)
+  @Html.EditorFor(model => model.Type)
+
+
+  <input type="submit" value="Save Changes"/>
+}
+
+<p>@Html.ActionLink("Back", "Index")</p>
