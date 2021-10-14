@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Gym.Models
+
+<h1>List of Amenities</h1>
+
+@if (Model.Count == 0)
+{
+  <h3>this center has no available amenities</h3>
+}
+
+@foreach(Amenity amenity in Model)
+{
+  <h3>@Html.ActionLink($"{amenity.Name}", "Details", new {id = amenity.AmenityId})</h3>
+  <hr>
+  <p>Open: @amenity.Open</p>
+  <p>Close: @amenity.Close</p>
+}
+
+@Html.ActionLink("Add Amenity", "Create", "Amenities")

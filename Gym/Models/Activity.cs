@@ -8,6 +8,7 @@ namespace Gym.Models
     public Activity()
     {
       this.PlayerJoinEntities = new HashSet <ActivityPlayer>();
+      this.Reservations = new HashSet<Reservation>();
       this.Completed = false;
     }
 
@@ -16,6 +17,7 @@ namespace Gym.Models
     public int MaxPlayers {get;set;}
     public string Type {get;set;}
     public bool Completed {get; set;}
+    public virtual ICollection <Reservation> Reservations {get;set;}
     public virtual ICollection <ActivityPlayer> PlayerJoinEntities {get;set;}
   }
 }
